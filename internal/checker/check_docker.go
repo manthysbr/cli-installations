@@ -1,4 +1,4 @@
-package check
+package checker
 
 import (
     "log"
@@ -13,12 +13,12 @@ func CheckDocker() string {
     
     if err != nil {
         log.Printf("Docker is not installed.")
-        config.SaveSoftwareState("Docker", "Not installed")
+        config.SaveSoftwareState("Docker", "Not installed", "")
         return "Not installed"
     }
 
     version := strings.TrimSpace(string(output))
-    log.Printf("Proxyman version found: %s", version)
-    config.SaveSoftwareState("Docker", "Installed")
+    log.Printf("Docker version found: %s", version)
+    config.SaveSoftwareState("Docker", "Installed", version)
     return "Installed"
 }
