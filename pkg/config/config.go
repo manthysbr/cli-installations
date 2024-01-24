@@ -6,16 +6,19 @@ import (
 )
 
 type SoftwareState struct {
-    Software map[string]string
+    Software map[string]map[string]string
 }
 
 var state SoftwareState
 
-func SaveSoftwareState(software, status string) {
+func SaveSoftwareState(software string, status string, version string) {
     if state.Software == nil {
-        state.Software = make(map[string]string)
+        state.Software = make(map[string]map[string]string)
     }
-    state.Software[software] = status
+    state.Software[software] = map[string]string{
+        "state":   status,
+        "version": version,
+    }
     data, _ := json.Marshal(state)
     os.WriteFile("software_state.json", data, 0644)
 }
@@ -23,5 +26,5 @@ func SaveSoftwareState(software, status string) {
 func GetSoftwareState(software string) string {
     data, _ := os.ReadFile("software_state.json")
     json.Unmarshal(data, &state)
-    return state.Software[software]
+    return state.Software[software]["state"]
 }

@@ -2,24 +2,22 @@ package main
 
 import (
     "flag"
-    "fmt"
     "os"
     "manthys/cmd/check"
-    //"manthys/cmd/install"
     "manthys/cmd/help"
     // ... other imports ...
 )
 
 func main() {
-    // Define a boolean flag for -h
-    helpFlag := flag.Bool("h", false, "Show help for command")
-    // Parse the flags
-    flag.Parse()
-
     if len(os.Args) < 2 {
         help.PrintHelp()
         os.Exit(1)
     }
+
+    // Define a boolean flag for -h
+    helpFlag := flag.Bool("h", false, "Show help for command")
+    // Parse the flags
+    flag.Parse()
 
     switch os.Args[1] {
     case "check":

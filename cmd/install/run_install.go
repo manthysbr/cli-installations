@@ -11,6 +11,6 @@ func RunInstall() {
     // Install the software if it's not installed
     if softwareState.Software["Python"] == "Not installed" {
         InstallPython()
-    }
+    
     // Repeat for other software
 }
