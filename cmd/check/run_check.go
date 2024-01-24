@@ -2,7 +2,6 @@ package check
 
 import (
     "fmt"
-    "manthys/cmd/validate"
     "os/exec"
     "strings"
 )
