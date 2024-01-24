@@ -13,12 +13,12 @@ func CheckPython() string {
     
     if err != nil {
         log.Printf("Python is not installed.")
-        config.SaveSoftwareState("Python", "Not installed")
+        config.SaveSoftwareState("Python", "Not installed", "")
         return "Not installed"
     }
 
     version := strings.TrimSpace(string(output))
     log.Printf("Python version found: %s", version)
-    config.SaveSoftwareState("Python", "Installed")
+    config.SaveSoftwareState("Python", "Installed", version)
     return "Installed"
 }
