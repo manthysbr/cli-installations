@@ -11,8 +11,8 @@ func GenerateReport() {
 
     // Print a list of the software to be installed
     fmt.Println("The following software will be installed:")
-    for software, status := range softwareState.Software {
-        if status == "não instalado" {
+    for software, details := range softwareState.Software {
+        if details["state"] == "não instalado" {
             fmt.Println("- " + software)
         }
     }
