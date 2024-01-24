@@ -2,7 +2,7 @@ package check
 
 import (
     "log"
-    "os"
+    //"os"
     "os/exec"
     "strings"
 )
