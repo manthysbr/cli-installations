@@ -1,42 +1,30 @@
 package main
 
 import (
-    "flag"
-    "fmt"
-    "os"
-    "manthys/cmd/check"
-    "manthys/cmd/help"
-    // ... other imports ...
+	"fmt"
+	"os"
+	"github.com/spf13/cobra"
 )
 
+// rootCmd representa o comando base quando chamado sem subcomandos
+var rootCmd = &cobra.Command{
+	Use:   "manthys",
+	Short: "Manthys é uma CLI para configurar rapidamente o seu ambiente de desenvolvimento",
+	Long: `Uma ferramenta completa para a instalação e configuração de ambientes de desenvolvimento
+com suporte a múltiplas operações e verificações.`,
+	// Aqui você pode tratar a lógica quando o comando manthys for chamado sem subcomandos
+	Run: func(cmd *cobra.Command, args []string) {
+		fmt.Println("Bem-vindo ao Manthys CLI! Use 'manthys [comando]' para interagir com a aplicação.")
+	},
+}
+
+func init() {
+	// Aqui você pode inicializar os flags e subcomandos
+}
+
 func main() {
-    if len(os.Args) < 2 {
-        help.PrintHelp()
-        os.Exit(1)
-    }
-
-    // Define a boolean flag for -h
-    helpFlag := flag.Bool("h", false, "Show help for command")
-    // Parse the flags
-    flag.Parse()
-
-    switch os.Args[1] {
-    case "check":
-        if *helpFlag {
-            help.PrintCheckHelp() // call the PrintCheckHelp function
-        } else {
-            check.RunCheck()
-        }
-    case "install":
-        if *helpFlag {
-            help.PrintInstallHelp() // call the PrintInstallHelp function
-        } else {
-            // call your install function here
-        }
-    case "help":
-        help.PrintHelp()
-    default:
-        fmt.Printf("Comando desconhecido: %s\n", os.Args[1])
-        os.Exit(1)
-    }
+	if err := rootCmd.Execute(); err != nil {
+		fmt.Fprintln(os.Stderr, err)
+		os.Exit(1)
+	}
 }
