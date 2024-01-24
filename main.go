@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 	"os"
-	"manthys/cmd/check" // Certifique-se de que o caminho está correto com base na localização do seu pacote check
+	"manthys/cmd/validate" // Certifique-se de que o caminho está correto com base na localização do seu pacote check
 	"github.com/spf13/cobra"
 )
 
