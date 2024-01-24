@@ -1,7 +1,7 @@
 package check
 
 import (
-	"manthys/internal/checker" // Certifique-se de que o caminho está correto
+	"manthys/internal/check" // Certifique-se de que o caminho está correto
 	"github.com/spf13/cobra"
 )
 
