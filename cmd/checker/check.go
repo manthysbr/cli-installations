@@ -1,7 +1,7 @@
 package check
 
 import (
-	"manthys/cmd/checker" // Certifique-se de que o caminho está correto
+	"manthys/internal/checker" // Certifique-se de que o caminho está correto
 	"github.com/spf13/cobra"
 )
 
@@ -13,7 +13,6 @@ var CheckCmd = &cobra.Command{
 	Run: func(cmd *cobra.Command, args []string) {
 		// Chama as funções do pacote checker
 		checker.CheckGit()
-		checker.CheckPython()
 		checker.CheckAzureCLI()
 		checker.CheckDocker()
 		checker.CheckProxyman()
