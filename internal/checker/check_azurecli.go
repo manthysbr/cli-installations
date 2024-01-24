@@ -7,7 +7,7 @@ import (
     "manthys/pkg/config"
 )
 
-func CheckAzureCli() string {
+func CheckAzureCLI() string {
     cmd := exec.Command("az", "--version")
     output, err := cmd.CombinedOutput()
     
