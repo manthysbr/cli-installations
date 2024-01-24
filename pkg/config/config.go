@@ -23,8 +23,8 @@ func SaveSoftwareState(software string, status string, version string) {
     os.WriteFile("software_state.json", data, 0644)
 }
 
-func GetSoftwareState(software string) string {
+func GetSoftwareState() SoftwareState {
     data, _ := os.ReadFile("software_state.json")
     json.Unmarshal(data, &state)
-    return state.Software[software]["state"]
+    return state
 }
