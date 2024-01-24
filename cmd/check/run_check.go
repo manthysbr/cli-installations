@@ -2,7 +2,7 @@ package check
 
 import (
     "flag"
-    "manthys/help"
+    "manthys/cmd/help"
 )
 
 func RunCheck() {
