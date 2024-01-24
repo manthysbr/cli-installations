@@ -2,6 +2,7 @@ package check
 
 import (
     "flag"
+    "os"
     "manthys/cmd/help"
 )
 
