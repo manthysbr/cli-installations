@@ -19,7 +19,7 @@ var rootCmd = &cobra.Command{
 
 func main() {
 	// Adiciona o comando 'check' como um subcomando de 'rootCmd'
-	rootCmd.AddCommand(check.CheckCmd)
+	rootCmd.AddCommand(validate.CheckCmd)
 
 	// Execute o comando raiz e todos os subcomandos associados
 	if err := rootCmd.Execute(); err != nil {
