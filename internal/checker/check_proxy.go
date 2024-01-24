@@ -7,7 +7,7 @@ import (
     "manthys/pkg/config"
 )
 
-func CheckProxy() string {
+func CheckProxyman() string {
     cmd := exec.Command("proxyman", "--version")
     output, err := cmd.CombinedOutput()
     
