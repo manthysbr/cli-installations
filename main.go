@@ -3,11 +3,10 @@ package main
 import (
 	"fmt"
 	"os"
-	"manthys/cmd/validate" // Certifique-se de que o caminho está correto com base na localização do seu pacote check
+	"manthys/cmd/validate" // Assegure-se de que esta é a localização correta do pacote
 	"github.com/spf13/cobra"
 )
 
-// rootCmd representa o comando base quando chamado sem subcomandos
 var rootCmd = &cobra.Command{
 	Use:   "manthys",
 	Short: "Manthys é uma CLI para configurar rapidamente o seu ambiente de desenvolvimento",
@@ -18,10 +17,8 @@ var rootCmd = &cobra.Command{
 }
 
 func main() {
-	// Adiciona o comando 'check' como um subcomando de 'rootCmd'
 	rootCmd.AddCommand(validate.CheckCmd)
 
-	// Execute o comando raiz e todos os subcomandos associados
 	if err := rootCmd.Execute(); err != nil {
 		fmt.Fprintln(os.Stderr, err)
 		os.Exit(1)
