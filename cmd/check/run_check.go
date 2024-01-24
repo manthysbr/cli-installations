@@ -1,12 +1,19 @@
 package check
 
 import (
-    //"fmt"
-    //"os/exec"
-    //"strings"
+    "flag"
+    "manthys/help"
 )
 
 func RunCheck() {
+    helpFlag := flag.Bool("h", false, "Show help for command")
+    flag.Parse()
+
+    if *helpFlag {
+        help.PrintCheckHelp()
+        return
+    }
+
     // Chama a função de checagem para Python
     CheckPython()
     CheckGit()
