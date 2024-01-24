@@ -8,7 +8,7 @@ import (
 )
 
 func CheckPython() {
-    cmd := exec.Command("python", "--version")
+    cmd := exec.Command("python3", "--version")
     output, err := cmd.CombinedOutput()
 
     if err != nil {
