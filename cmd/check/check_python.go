@@ -1,7 +1,8 @@
 package check
 
 import (
-    "fmt"
+    "log"
+    "os"
     "os/exec"
     "strings"
 )
@@ -11,10 +12,10 @@ func CheckPython() {
     output, err := cmd.CombinedOutput()
 
     if err != nil {
-        fmt.Println("Python não está instalado.")
+        log.Printf("Error checking Python version: %v", err)
         return
     }
 
     version := strings.TrimSpace(string(output))
-    fmt.Printf("Versão do Python encontrada: %s\n", version)
+    log.Printf("Python version found: %s", version)
 }
