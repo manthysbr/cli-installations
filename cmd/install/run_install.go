@@ -1,15 +1,16 @@
 package install
 
 import (
-    // Importações necessárias
     "manthys/pkg/config"
 )
 
 func RunInstall() {
-    // Verificar o estado dos softwares do arquivo de configuração
-    state := config.GetSoftwareState("python")
-    if state == "não instalado" {
-        // Instalar o software
+    // Load the software state from the JSON file
+    softwareState := config.LoadSoftwareState()
+
+    // Install the software if it's not installed
+    if softwareState.Software["Python"] == "Not installed" {
+        InstallPython()
     }
-    // Repetir para outros softwares
+    // Repeat for other software
 }

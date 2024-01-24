@@ -1,20 +1,24 @@
 package check
 
 import (
-    "fmt"
+    "log"
     "os/exec"
     "strings"
+    "manthys/pkg/config"
 )
 
-func CheckGit() {
+func CheckGit() string {
     cmd := exec.Command("git", "--version")
     output, err := cmd.CombinedOutput()
-
+    
     if err != nil {
-        fmt.Println("Git não está instalado.")
-        return
+        log.Printf("Git is not installed.")
+        config.SaveSoftwareState("Git", "Not installed")
+        return "Not installed"
     }
 
     version := strings.TrimSpace(string(output))
-    fmt.Printf("Versão do Git encontrada: %s\n", version)
+    log.Printf("Git version found: %s", version)
+    config.SaveSoftwareState("Git", "Installed")
+    return "Installed"
 }
