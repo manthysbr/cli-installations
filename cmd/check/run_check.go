@@ -6,8 +6,14 @@ import (
 )
 
 func RunCheck() {
-    helpFlag := flag.Bool("h", false, "Show help for command")
-    flag.Parse()
+    // Create a new flag set
+    flags := flag.NewFlagSet("check", flag.ExitOnError)
+
+    // Define the -h flag in this flag set
+    helpFlag := flags.Bool("h", false, "Show help for command")
+
+    // Parse the flags
+    flags.Parse(os.Args[2:])
 
     if *helpFlag {
         help.PrintCheckHelp()
