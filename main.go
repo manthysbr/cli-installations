@@ -5,7 +5,7 @@ import (
     "fmt"
     "os"
     "manthys/cmd/check"
-    "manthys/cmd/install"
+    //"manthys/cmd/install"
     "manthys/cmd/help"
     // ... other imports ...
 )
