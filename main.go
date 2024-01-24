@@ -16,6 +16,7 @@ var rootCmd = &cobra.Command{
         fmt.Println(utils.GetAsciiArt())
         fmt.Println("Bem-vindo ao Manthys CLI! Use 'manthys help' para ver os comandos disponíveis.")
     },
+}
 
 func main() {
 	rootCmd.AddCommand(validate.CheckCmd)
