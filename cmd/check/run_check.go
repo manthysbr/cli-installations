@@ -1,9 +1,9 @@
 package check
 
 import (
-    "fmt"
-    "os/exec"
-    "strings"
+    //"fmt"
+    //"os/exec"
+    //"strings"
 )
 
 func RunCheck() {
