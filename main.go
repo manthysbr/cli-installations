@@ -4,7 +4,7 @@ import (
     "fmt"
     "os"
     "manthys/cmd/check"
-    "manthys/cmd/install"
+    // ... outras importações ...
 )
 
 func main() {
@@ -16,8 +16,6 @@ func main() {
     switch os.Args[1] {
     case "check":
         check.RunCheck()
-    case "install":
-        install.RunInstall()
     default:
         fmt.Printf("Comando desconhecido: %s\n", os.Args[1])
         os.Exit(1)
