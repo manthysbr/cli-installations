@@ -1,20 +1,24 @@
 package check
 
 import (
-    "fmt"
+    "log"
     "os/exec"
     "strings"
+    "manthys/pkg/config"
 )
 
-func CheckAzureCli() {
+func CheckAzureCli() string {
     cmd := exec.Command("az", "--version")
     output, err := cmd.CombinedOutput()
-
+    
     if err != nil {
-        fmt.Println("Azure CLI não está instalado.")
-        return
+        log.Printf("Azure CLI is not installed.")
+        config.SaveSoftwareState("AzureCLI", "Not installed")
+        return "Not installed"
     }
 
     version := strings.TrimSpace(string(output))
-    fmt.Printf("Versão do Azure CLI encontrada: %s\n", version)
+    log.Printf("Azure CLI version found: %s", version)
+    config.SaveSoftwareState("AzureCLI", "Installed")
+    return "Installed"
 }

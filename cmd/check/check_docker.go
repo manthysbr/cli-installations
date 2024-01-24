@@ -1,20 +1,24 @@
 package check
 
 import (
-    "fmt"
+    "log"
     "os/exec"
     "strings"
+    "manthys/pkg/config"
 )
 
-func CheckDocker() {
+func CheckDocker() string {
     cmd := exec.Command("docker", "--version")
     output, err := cmd.CombinedOutput()
-
+    
     if err != nil {
-        fmt.Println("Docker não está instalado.")
-        return
+        log.Printf("Docker is not installed.")
+        config.SaveSoftwareState("Docker", "Not installed")
+        return "Not installed"
     }
 
     version := strings.TrimSpace(string(output))
-    fmt.Printf("Versão do Docker encontrada: %s\n", version)
+    log.Printf("Proxyman version found: %s", version)
+    config.SaveSoftwareState("Docker", "Installed")
+    return "Installed"
 }
