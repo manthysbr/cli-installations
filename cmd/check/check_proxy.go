@@ -1,20 +1,24 @@
 package check
 
 import (
-    "fmt"
+    "log"
     "os/exec"
     "strings"
+    "manthys/pkg/config"
 )
 
-func CheckProxy() {
+func CheckProxy() string {
     cmd := exec.Command("proxyman", "--version")
     output, err := cmd.CombinedOutput()
-
+    
     if err != nil {
-        fmt.Println("Proxyman não está instalado.")
-        return
+        log.Printf("Proxyman is not installed.")
+        config.SaveSoftwareState("Proxyman", "Not installed")
+        return "Not installed"
     }
 
     version := strings.TrimSpace(string(output))
-    fmt.Printf("Versão do Proxyman encontrada: %s\n", version)
+    log.Printf("Proxyman version found: %s", version)
+    config.SaveSoftwareState("Proxyman", "Installed")
+    return "Installed"
 }
