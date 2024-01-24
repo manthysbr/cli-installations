@@ -6,21 +6,29 @@ import (
 )
 
 func RunInstall() {
-    // Load the software state from the JSON file
+    // Carrega o estado do software do arquivo JSON
     softwareState := config.LoadSoftwareState()
 
-    // For each software in the software state
+    // Para cada software no estado do software
     for software, state := range softwareState.Software {
-        // If the software is not installed
+        // Se o software não estiver instalado
         if state == "Not installed" {
-            // Call the corresponding function to install the software
+            // Chama a função correspondente para instalar o software
             switch software {
             case "Python":
                 InstallPython()
-            // Add cases for other software
+            case "Git":
+                InstallGit()
+            case "Docker":
+                InstallDocker()
+            case "Proxyman":
+                InstallProxyman()
+            case "AzureCLI":
+                InstallAzureCLI()
+            // Adicione casos para outros softwares conforme necessário
             }
         } else {
-            // If the software is installed, print the version
+            // Se o software estiver instalado, imprime a versão
             fmt.Printf("%s is installed with version: %s\n", software, state)
         }
     }
