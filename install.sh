@@ -1,59 +1,70 @@
 #!/bin/bash
 
-# Definindo cores para o output
+# Defining colors for output
 GREEN='\033[0;32m'
 RED='\033[0;31m'
+BOLD='\033[1m'
+BLINK='\033[5m'
 NC='\033[0m' # Sem cor
 
-echo -e "${GREEN}Iniciando a instalação da CLI Manthys...${NC}"
+# Função para criar efeito de digitação
+typeout() {
+  local IFS=''
+  for i in $1; do
+    echo -n "$i"
+    sleep 0.05
+  done
+  echo
+}
 
-# Verifica se o Curl está instalado
+typeout "${GREEN}${BOLD}Iniciando a instalação da CLI Manthys...${NC}"
+
+# Check if Curl is installed
 if ! command -v curl &> /dev/null; then
-    echo -e "${RED}Curl não encontrado. Instalando...${NC}"
-    sudo apt-get install curl -y
-else
-    echo -e "${GREEN}Curl encontrado.${NC}"
-fi
-
-# Verifica se o Wget está instalado
-if ! command -v wget &> /dev/null; then
-    echo -e "${RED}Wget não encontrado. Instalando...${NC}"
-    sudo apt-get install wget -y
-else
-    echo -e "${GREEN}Wget encontrado.${NC}"
-fi
-
-# Verifica se o Go está instalado
-if ! command -v go &> /dev/null
-then
-    echo -e "${RED}Go não encontrado no sistema.${NC}"
-
-    # Solicita confirmação do usuário
-    read -p "Deseja instalar o Go? (y/n): " -n 1 -r
+    echo -e "${RED}Curl not found.${NC}"
+    read -p "Do you want to install Curl? (y/n): " -n 1 -r
     echo
     if [[ $REPLY =~ ^[Yy]$ ]]
     then
-        echo -e "${GREEN}Instalando Go...${NC}"
-        sudo apt update && sudo apt install -y golang-go
+        echo -e "${GREEN}Installing Curl... Please wait.${NC}"
+        sudo apt-get install curl -y > /dev/null 2>&1
     else
-        echo -e "${RED}Instalação cancelada pelo usuário.${NC}"
+        echo -e "${RED}Installation cancelled by the user.${NC}"
         exit 1
     fi
 else
-    echo -e "${GREEN}Go encontrado, prosseguindo com a instalação.${NC}"
+    echo -e "${GREEN}Curl found.${NC}"
 fi
 
-echo -e "${GREEN}Compilando o código fonte...${NC}"
-go build -o manthys
-
-echo -e "${GREEN}Movendo o binário para /usr/local/bin...${NC}"
-sudo mv manthys /usr/local/bin/manthys
-
-# Verifica se /usr/local/bin está no PATH
-if [[ ":$PATH:" != *":/usr/local/bin:"* ]]; then
-    echo -e "${GREEN}Atualizando o PATH para incluir /usr/local/bin...${NC}"
-    echo "export PATH=\$PATH:/usr/local/bin" >> ~/.bashrc
-    source ~/.bashrc
+# Check if Wget is installed
+if ! command -v wget &> /dev/null; then
+    echo -e "${RED}Wget not found.${NC}"
+    read -p "Do you want to install Wget? (y/n): " -n 1 -r
+    echo
+    if [[ $REPLY =~ ^[Yy]$ ]]
+    then
+        echo -e "${GREEN}Installing Wget... Please wait.${NC}"
+        sudo apt-get install wget -y > /dev/null 2>&1
+    else
+        echo -e "${RED}Installation cancelled by the user.${NC}"
+        exit 1
+    fi
+else
+    echo -e "${GREEN}Wget found.${NC}"
 fi
 
-echo -e "${GREEN}Instalação concluída! Execute 'manthys' para começar.${NC}"
+# Check if Go is installed
+if ! command -v go &> /dev/null
+then
+    echo -e "${RED}Go not found on the system.${NC}"
+    read -p "Do you want to install Go? (y/n): " -n 1 -r
+    echo
+    if [[ $REPLY =~ ^[Yy]$ ]]
+    then
+        echo -e "${GREEN}Installing Go... Please wait.${NC}"
+        sudo apt update > /dev/null 2>&1 && sudo apt install -y golang-go > /dev/null 2>&1
+    else
+        echo -e "${RED}Installation cancelled by the user.${NC}"
+        exit 1
+    fi
+fi
