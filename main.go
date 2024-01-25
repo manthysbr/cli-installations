@@ -20,9 +20,9 @@ var rootCmd = &cobra.Command{
 }
 
 func main() {
-    utils.AddCommands(rootCmd) // Adiciona comandos personalizados, como o comando de ajuda
+    utils.AddCommands(rootCmd)
     rootCmd.AddCommand(validate.CheckCmd)
-    rootCmd.AddCommand(install.RunInstall)
+    rootCmd.AddCommand(install.InstallCmd)
 
     if err := rootCmd.Execute(); err != nil {
         fmt.Fprintln(os.Stderr, err)
