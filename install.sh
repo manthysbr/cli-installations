@@ -68,3 +68,15 @@ then
         exit 1
     fi
 fi
+
+echo -e "${GREEN}Compilando o código fonte...${NC}"
+go build -o manthys
+echo -e "${GREEN}Movendo o binário para /usr/local/bin...${NC}"
+sudo mv manthys /usr/local/bin/manthys
+# Verifica se /usr/local/bin está no PATH
+if [[ ":$PATH:" != *":/usr/local/bin:"* ]]; then
+    echo -e "${GREEN}Atualizando o PATH para incluir /usr/local/bin...${NC}"
+    echo "export PATH=\$PATH:/usr/local/bin" >> ~/.bashrc
+    source ~/.bashrc
+fi
+echo -e "${GREEN}Instalação concluída! Execute 'manthys' para começar.${NC}"
