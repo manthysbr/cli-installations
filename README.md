@@ -41,11 +41,14 @@ A CLI Manthys pode ser usada com os seguintes comandos:
 
 ### Exemplos:
 
+- Para iniciar a CLI
+`./install.sh`
+
 - Para verificar os softwares:
-`./manthys check`
+`manthys check`
 
 - Para instalar os softwares:
-`./manthys install`
+`manthys install`
 
 
 ## Contribuição
