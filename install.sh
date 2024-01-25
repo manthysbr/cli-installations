@@ -7,6 +7,22 @@ NC='\033[0m' # Sem cor
 
 echo -e "${GREEN}Iniciando a instalação da CLI Manthys...${NC}"
 
+# Verifica se o Curl está instalado
+if ! command -v curl &> /dev/null; then
+    echo -e "${RED}Curl não encontrado. Instalando...${NC}"
+    sudo apt-get install curl -y
+else
+    echo -e "${GREEN}Curl encontrado.${NC}"
+fi
+
+# Verifica se o Wget está instalado
+if ! command -v wget &> /dev/null; then
+    echo -e "${RED}Wget não encontrado. Instalando...${NC}"
+    sudo apt-get install wget -y
+else
+    echo -e "${GREEN}Wget encontrado.${NC}"
+fi
+
 # Verifica se o Go está instalado
 if ! command -v go &> /dev/null
 then
