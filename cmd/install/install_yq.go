@@ -3,7 +3,7 @@ package install
 import (
     "fmt"
     "os/exec"
-    "time"
+    //"time"
 )
 
 func InstallYq() {
