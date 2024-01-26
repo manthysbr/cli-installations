@@ -2,9 +2,9 @@ package install
 
 import (
 	"fmt"
-	"log"
+	//"log"
 	"os/exec"
-	"time"
+	//"time"
 )
 
 func InstallYq() {
