@@ -12,34 +12,36 @@ var InstallCmd = &cobra.Command{
     Short: "Instala os softwares necessários",
     Long:  `Instala todos os softwares que estão marcados como 'Not installed' no arquivo software_state.json.`,
     Run: func(cmd *cobra.Command, args []string) {
-        // Gera o relatório e pede confirmação
+        fmt.Println("Iniciando o processo de instalação...")
         if report.GenerateInstallationReport() {
-            // O usuário confirmou, prossegue com a instalação
             softwareState := config.GetSoftwareState()
             for software, details := range softwareState.Software {
                 if details["state"] == "Not installed" {
-                    // Chama a função correspondente para instalar o software
-                    switch software {
-                    case "Python":
-                        InstallPython()
-                    case "Git":
-                        InstallGit()
-                    case "Docker":
-                        InstallDocker()
-                    case "YQ":
-                        InstallYq()
-                    case "JQ":
-                        InstallJq()
-                    case "AzureCLI":
-                        InstallAzureCLI()
-                    }
+                    fmt.Printf("Instalando %s...\n", software)
+                    installSoftware(software)
                 } else {
-                    fmt.Printf("%s is installed with version: %s\n", software, details["version"])
+                    fmt.Printf("%s já está instalado com a versão: %s\n", software, details["version"])
                 }
             }
         } else {
-            // Mensagem caso o usuário opte por não instalar
             fmt.Println("Instalação cancelada pelo usuário.")
         }
     },
+}
+
+func installSoftware(software string) {
+    switch software {
+    case "Python":
+        InstallPython()
+    case "Git":
+        InstallGit()
+    case "Docker":
+        InstallDocker()
+    case "YQ":
+        InstallYq()
+    case "JQ":
+        InstallJq()
+    case "AzureCLI":
+        InstallAzureCLI()
+    }
 }
