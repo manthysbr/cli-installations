@@ -3,7 +3,7 @@ package install
 import (
     "fmt"
     "os/exec"
-	"os"
+    "time"
 )
 
 func InstallYq() {
@@ -12,8 +12,17 @@ func InstallYq() {
     // Preparando ambiente
     prepararAmbiente()
 
-    // Install yq using go get
-    installCmd := exec.Command("go", "get", "github.com/mikefarah/yq/v3")
-    installCmd.Env = append(os.Environ(), "GO111MODULE=on")
+    // Adiciona o repositório PPA do yq
+    addRepoCmd := exec.Command("sudo", "add-apt-repository", "-y", "ppa:rmescandon/yq")
+    executeInstallCommand(addRepoCmd)
+
+    // Atualiza os pacotes após adicionar o repositório
+    updateCmd := exec.Command("sudo", "apt-get", "update")
+    executeInstallCommand(updateCmd)
+
+    // Instala o yq
+    installCmd := exec.Command("sudo", "apt-get", "install", "-y", "yq")
     executeInstallCommand(installCmd)
+
+    fmt.Println("YQ instalado com sucesso.")
 }
