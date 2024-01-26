@@ -23,26 +23,23 @@ Para instalar a CLI Manthys, siga os passos abaixo:
 
 
 2. Navegue até o diretório:
-	 `cd manthys`
+	 `cd cli-installations`
 
-3. Compile o código:
-     `go build`
+3. Realize o check de dependências e compile o código:
+     `./install.sh`
 
 4. Execute a CLI
-     `./manthys`
+     `manthys`
 
 
 ## Uso
 
 A CLI Manthys pode ser usada com os seguintes comandos:
 
-- `./manthys check`: Verifica o estado atual dos softwares necessários.
-- `./manthys install`: Instala todos os softwares que não estão presentes no sistema, de acordo com a checagem.
+- `manthys check`: Verifica o estado atual dos softwares necessários.
+- `manthys install`: Instala todos os softwares que não estão presentes no sistema, de acordo com a checagem.
 
 ### Exemplos:
-
-- Para iniciar a CLI
-`./install.sh`
 
 - Para verificar os softwares:
 `manthys check`
