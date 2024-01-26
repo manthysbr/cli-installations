@@ -10,7 +10,7 @@ A CLI usa Golang e Cobra para uma experiência de usuário aprimorada e funciona
 
 ## Recursos
 
-- Verificação automática da presença e versão de softwares essenciais como Python, Git, Docker, AzureCLI e Proxyman (mais em desenvolvimento).
+- Verificação automática da presença e versão de softwares essenciais como Python, Git, Docker, AzureCLI e os pacotes jq/yq.
 - Instalação automatizada de softwares não presentes no sistema.
 - Interface de usuário amigável e informativa, com saída detalhada sobre o estado de cada software.
 
