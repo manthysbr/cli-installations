@@ -19,17 +19,3 @@ func InstallGit() {
 
 	fmt.Println("Git instalado com sucesso.")
 }
-
-func executeInstallCommand(cmd *exec.Cmd) error {
-	if err := cmd.Start(); err != nil {
-		return fmt.Errorf("falha ao iniciar a instalação: %w", err)
-	}
-
-	fmt.Println("Instalando o Git. Isso pode levar alguns instantes...")
-
-	if err := cmd.Wait(); err != nil {
-		return fmt.Errorf("falha durante a instalação: %w", err)
-	}
-
-	return nil
-}
