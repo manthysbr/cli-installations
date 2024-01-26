@@ -3,6 +3,7 @@ package install
 import (
     "fmt"
     "os/exec"
+	"os"
 )
 
 func InstallYq() {
