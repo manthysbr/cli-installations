@@ -4,7 +4,7 @@ import (
 	"fmt"
 	//"log"
 	"os/exec"
-	"time"
+	//"time"
 )
 
 func InstallJq() {
