@@ -15,7 +15,8 @@ var CheckCmd = &cobra.Command{
 		checker.CheckPython()
 		checker.CheckAzureCLI()
 		checker.CheckDocker()
-		checker.CheckProxyman()
+		checker.CheckYq()
+		checker.CheckJq()
 	},
 }
 

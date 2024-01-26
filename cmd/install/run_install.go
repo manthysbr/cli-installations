@@ -26,8 +26,8 @@ var InstallCmd = &cobra.Command{
                         InstallGit()
                     case "Docker":
                         InstallDocker()
-                    case "Proxyman":
-                        InstallProxyman()
+                    case "YQ e JQ":
+                        InstallYqJq()
                     case "AzureCLI":
                         InstallAzureCLI()
                     }
