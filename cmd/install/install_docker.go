@@ -7,19 +7,20 @@ import (
 )
 
 func InstallDocker() {
-	fmt.Println("Docker está sendo instalado. Aguarde...")
+    fmt.Println("Docker está sendo instalado. Aguarde...")
 
-	// Preparando ambiente
-	fmt.Println("Preparando ambiente...")
+    // Preparando ambiente
+    fmt.Println("Preparando ambiente...")
 
-	cmd := exec.Command("sudo", "apt-get", "install", "-y", "docker.io")
+    cmd := exec.Command("sudo", "apt-get", "install", "-y", "docker.io")
 
-	// Executa o comando de instalação e captura qualquer erro
-	if err := executeInstallCommand(cmd); err != nil {
-		log.Fatalf("Falha ao instalar o Docker: %s", err)
-	}
+    // Executa o comando de instalação e captura qualquer erro
+    err := executeInstallCommand(cmd)
+    if err != nil {
+        log.Fatalf("Falha ao instalar o Docker: %s", err)
+    }
 
-	fmt.Println("Docker instalado com sucesso.")
+    fmt.Println("Docker instalado com sucesso.")
 }
 
 // executeInstallCommand executa o comando e retorna o erro, se houver
