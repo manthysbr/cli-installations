@@ -1,43 +1,37 @@
 package install
 
 import (
-    "bufio"
-    "fmt"
-    "log"
-    "os/exec"
-    "strings"
+	"fmt"
+	"log"
+	"os/exec"
+	"time"
 )
 
 func InstallDocker() {
-    fmt.Println("Iniciando a instalação do Docker...")
+	fmt.Println("Docker está sendo instalado. Aguarde...")
+	
+	// Preparando ambiente
+	prepararAmbiente()
 
-    cmd := exec.Command("sudo", "apt-get", "install", "-y", "docker.io")
+	cmd := exec.Command("sudo", "apt-get", "install", "-y", "docker.io")
 
-    // Cria um pipe para a saída padrão do comando
-    stdout, err := cmd.StdoutPipe()
-    if err != nil {
-        log.Fatalf("Erro ao criar o pipe para a saída padrão: %s", err)
-    }
+	// Inicia o comando sem esperar que ele termine
+	if err := cmd.Start(); err != nil {
+		log.Fatalf("Falha ao iniciar a instalação do Docker: %s", err)
+	}
 
-    // Inicia o comando
-    if err := cmd.Start(); err != nil {
-        log.Fatalf("Falha ao iniciar a instalação do Docker: %s", err)
-    }
+	fmt.Println("Instalando o Docker. Isso pode levar alguns instantes...")
 
-    // Lê a saída linha por linha
-    scanner := bufio.NewScanner(stdout)
-    for scanner.Scan() {
-        line := scanner.Text()
-        // Aqui você pode filtrar as linhas que deseja mostrar
-        if strings.Contains(line, "Unpacking") || strings.Contains(line, "Setting up") {
-            fmt.Println(line)
-        }
-    }
+	// Espera o comando terminar
+	if err := cmd.Wait(); err != nil {
+		log.Fatalf("Falha ao instalar o Docker: %s", err)
+	} else {
+		fmt.Println("Docker instalado. Prosseguindo instalação.")
+	}
+}
 
-    // Espera o comando terminar e verifica se houve erro
-    if err := cmd.Wait(); err != nil {
-        log.Fatalf("Falha ao instalar o Docker: %s", err)
-    } else {
-        fmt.Println("Docker instalado com sucesso")
-    }
+func prepararAmbiente() {
+	// Simula o tempo de preparação do ambiente
+	time.Sleep(2 * time.Second)
+	fmt.Println("Preparando ambiente...")
 }
