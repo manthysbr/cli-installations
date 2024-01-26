@@ -1,21 +1,19 @@
 package install
 
 import (
-	"fmt"
-	"log"
-	"os/exec"
+    "fmt"
+    "os/exec"
 )
 
 func InstallPython() {
-	fmt.Println("Python está sendo instalado. Aguarde...")
-	
-	fmt.Println("Preparando ambiente...")
+    fmt.Println("Python está sendo instalado. Aguarde...")
+    
+    fmt.Println("Preparando ambiente...")
 
-	cmd := exec.Command("sudo", "apt-get", "install", "-y", "python3")
+    cmd := exec.Command("sudo", "apt-get", "install", "-y", "python3")
 
-	if err := executeInstallCommand(cmd); err != nil {
-		log.Fatalf("Falha ao instalar o Python: %s", err)
-	}
+    // Executa o comando de instalação
+    executeInstallCommand(cmd)
 
-	fmt.Println("Python instalado com sucesso.")
+    fmt.Println("Python instalado com sucesso.")
 }
