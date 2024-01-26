@@ -11,15 +11,8 @@ func InstallYq() {
     // Preparando ambiente
     prepararAmbiente()
 
-    // Adiciona o PPA para o yq
-    addCmd := exec.Command("sudo", "add-apt-repository", "-y", "ppa:rmescandon/yq")
-    executeInstallCommand(addCmd)
-
-    // Atualiza os repositórios
-    updateCmd := exec.Command("sudo", "apt", "update")
-    executeInstallCommand(updateCmd)
-
-    // Instala o yq
-    installCmd := exec.Command("sudo", "apt-get", "install", "-y", "yq")
+    // Install yq using go get
+    installCmd := exec.Command("go", "get", "github.com/mikefarah/yq/v3")
+    installCmd.Env = append(os.Environ(), "GO111MODULE=on")
     executeInstallCommand(installCmd)
 }
