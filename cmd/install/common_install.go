@@ -2,6 +2,7 @@ package install
 
 import (
     "bufio"
+	"time"
     "fmt"
     "log"
     "os/exec"
