@@ -33,3 +33,9 @@ func executeInstallCommand(cmd *exec.Cmd) {
         fmt.Printf("%s instalado com sucesso\n", cmd.Args[len(cmd.Args)-1])
     }
 }
+
+func prepararAmbiente() {
+	// Simula o tempo de preparação do ambiente
+	time.Sleep(2 * time.Second)
+	fmt.Println("Preparando ambiente...")
+}
