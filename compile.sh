@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Definindo cores para saída
+# Definindo cores para saida
 GREEN='\033[0;32m'
 NC='\033[0m' # Sem cor
 
