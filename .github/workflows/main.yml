@@ -1,0 +1,34 @@
+name: Go Build and Package
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    name: Build and Package
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Go
+        uses: actions/setup-go@v2
+        with:
+          go-version: '1.18'
+
+      - name: Build
+        run: |
+          go build -v -o manthys ./cmd/manthys # Ajuste para o caminho correto do seu código
+
+      - name: Package Binary
+        run: |
+          tar -czvf manthys-${GITHUB_SHA::8}.tar.gz manthys
+
+      - name: Upload Build Artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: manthys-binary-${GITHUB_SHA::8}.tar.gz
+          path: manthys-${GITHUB_SHA::8}.tar.gz
