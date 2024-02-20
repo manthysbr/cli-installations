@@ -21,7 +21,7 @@ jobs:
 
       - name: Build
         run: |
-          go build -v -o manthys ./cmd/manthys # Ajuste para o caminho correto do seu código
+          go build -v -o manthys .
 
       - name: Package Binary
         run: |
