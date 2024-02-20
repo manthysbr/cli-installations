@@ -10,41 +10,47 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-
+      
       - name: Set up Go
         uses: actions/setup-go@v2
         with:
           go-version: '1.18'
-
+      
       - name: Build
         run: go build -v -o manthys .
-
+      
+      - name: Extract Version
+        id: extract_version
+        run: |
+          APP_VERSION=$(grep 'APP_VERSION=' install.sh | cut -d '"' -f 2)
+          echo "Extracted version: $APP_VERSION"
+          echo "APP_VERSION=$APP_VERSION" >> $GITHUB_ENV
+          echo "::set-output name=app_version::$APP_VERSION"
+      
       - name: Package Binary
         run: |
-          TAR_FILE="manthys-${GITHUB_SHA::8}.tar.gz"
+          TAR_FILE="manthys-${{ env.APP_VERSION }}.tar.gz"
           tar -czvf $TAR_FILE manthys
           echo "TAR_FILE=${TAR_FILE}" >> $GITHUB_ENV
-
+      
       - name: Generate Tag
-        id: generate_tag
+        if: github.ref == 'refs/heads/main'
         run: |
-          TAG_NAME="v$(date +'%Y.%m.%d.%H.%M.%S')"
+          TAG_NAME=${{ steps.extract_version.outputs.app_version }}
           echo "Creating tag $TAG_NAME"
           git tag $TAG_NAME
           git push origin $TAG_NAME
-          echo "::set-output name=tag::$TAG_NAME"
-
+      
       - name: Create Release
-        id: create_release
         uses: actions/create-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: ${{ steps.generate_tag.outputs.tag }}
-          release_name: Release ${{ steps.generate_tag.outputs.tag }}
+          tag_name: ${{ steps.extract_version.outputs.app_version }}
+          release_name: Release ${{ steps.extract_version.outputs.app_version }}
           draft: false
           prerelease: false
-
+      
       - name: Upload Release Asset
         uses: actions/upload-release-asset@v1
         env:
