@@ -10,7 +10,7 @@ import (
 )
 
 // ExecuteInstallCommand executa um comando de instalação e fornece feedback ao usuário
-func ExecuteInstallCommand(cmd *exec.Cmd) {
+func executeInstallCommand(cmd *exec.Cmd) {
     stdoutPipe, err := cmd.StdoutPipe()
     if err != nil {
         log.Fatalf("Erro ao criar o pipe para a saída padrão: %s", err)
@@ -42,7 +42,7 @@ func ExecuteInstallCommand(cmd *exec.Cmd) {
 }
 
 // PrepararAmbiente simula a preparação do ambiente
-func PrepararAmbiente() {
+func prepararAmbiente() {
     fmt.Println("Preparando ambiente...")
 
     s := spinner.New(spinner.CharSets[39], 100*time.Millisecond) // Cria um novo spinner
