@@ -8,7 +8,8 @@ import (
 func InstallPython() {
     fmt.Println("Python está sendo instalado. Aguarde...")
     
-    fmt.Println("Preparando ambiente...")
+	// Preparando ambiente
+	prepararAmbiente()
 
     cmd := exec.Command("sudo", "apt-get", "install", "-y", "python3")
 
