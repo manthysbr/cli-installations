@@ -20,15 +20,16 @@ jobs:
           go-version: '1.18'
 
       - name: Build
-        run: |
-          go build -v -o manthys .
+        run: go build -v -o manthys .
 
       - name: Print GITHUB_SHA
         run: echo "GITHUB_SHA is $GITHUB_SHA"
   
-      - name: Package Binary and Set TAR_FILE
+      - name: Set TAR_FILE variable
+        run: echo "TAR_FILE=manthys-${GITHUB_SHA::8}.tar.gz" >> $GITHUB_ENV
+
+      - name: Package Binary
         run: |
-          echo "TAR_FILE=manthys-${GITHUB_SHA::8}.tar.gz" >> $GITHUB_ENV
           tar -czvf $TAR_FILE manthys
         shell: bash
 
@@ -42,9 +43,7 @@ jobs:
           fi
 
       - name: List files in current directory
-        run: |
-          pwd
-          ls -la
+        run: pwd && ls -la
         
       - name: Upload Build Artifact
         uses: actions/upload-artifact@v2
