@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/bash
 
 # Definindo cores para saida
 GREEN='\033[0;32m'
@@ -26,7 +26,7 @@ fi
 echo -e "${GREEN}Iniciando o processo de build e empacotamento para $APP_NAME $APP_VERSION...${NC}"
 
 # Compilando o aplicativo
-if ! go build -o $BUILD_DIR/$APP_NAME .; then
+if ! /usr/local/go/bin/go build -o $BUILD_DIR/$APP_NAME .; then
     echo -e "${RED}Erro na compilação do binário. Processo abortado.${NC}"
     exit 1
 fi
