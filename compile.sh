@@ -1,17 +1,18 @@
 #!/usr/bin/bash
-
+# Esse script realiza o build e empacotamento da aplicação.
+# O binário é compilado e empacotado em um arquivo tar.gz, e um checksum é gerado para o arquivo resultante.
 # Definindo cores para saida
 GREEN='\033[0;32m'
 RED='\033[0;31m'
 NC='\033[0m' # Sem cor
 
-# Nome do seu aplicativo
+# Nome da app
 APP_NAME="manthys"
 
-# Versao do aplicativo (isso pode ser dinâmico, talvez passado como um argumento ou obtido de alguma forma automatizada)
+# Versao da app
 APP_VERSION="v1.0.0"
 
-# Caminho do diretorio de build (pode ser um diretório temporário)
+# Caminho do diretorio de build
 BUILD_DIR="/home/docker/build"
 
 # Verifica e cria o diretorio de build se nao existir
@@ -25,7 +26,7 @@ fi
 
 echo -e "${GREEN}Iniciando o processo de build e empacotamento para $APP_NAME $APP_VERSION...${NC}"
 
-# Compilando o aplicativo
+# Compilando o aplicativo...
 if ! /usr/local/go/bin/go build -o $BUILD_DIR/$APP_NAME .; then
     echo -e "${RED}Erro na compilação do binário. Processo abortado.${NC}"
     exit 1
