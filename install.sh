@@ -9,7 +9,7 @@ NC='\033[0m' # Sem cor
 APP_NAME="manthys"
 APP_VERSION="v1.0.0"
 BIN_DIR="/usr/local/bin" # Diretório padrão para binários globais
-TAR_FILE="${APP_NAME}${APP_VERSION}.tar.gz" # Nome do arquivo tar.gz
+TAR_FILE="${APP_NAME}-${APP_VERSION}.tar.gz" # Nome do arquivo tar.gz
 TEMP_DIR="/tmp/install" # Diretório temporário para extração
 
 # Verifica se o usuário é root, necessário para mover o binário para /usr/local/bin
