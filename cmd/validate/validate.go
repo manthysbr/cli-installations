@@ -11,6 +11,7 @@ var CheckCmd = &cobra.Command{
 	Short: "Verifica o estado da instalação dos softwares",
 	Long:  `Executa uma checagem para determinar se os softwares necessários estão instalados e configurados corretamente.`,
 	Run: func(cmd *cobra.Command, args []string) {
+		checker.CheckJSON()
 		checker.CheckGit()
 		checker.CheckPython()
 		checker.CheckAzureCLI()
