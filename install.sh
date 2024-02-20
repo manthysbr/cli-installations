@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/bash
 
 # Definindo cores para saída
 GREEN='\033[0;32m'
