@@ -40,3 +40,16 @@ func executeInstallCommand(cmd *exec.Cmd) {
 		fmt.Printf("%s instalado com sucesso\n", cmd.Args[len(cmd.Args)-1])
 	}
 }
+
+func prepararAmbiente() {
+    fmt.Println("Preparando ambiente...")
+
+    s := spinner.New(spinner.CharSets[39], 100*time.Millisecond) // Cria um novo spinner
+    s.Start() // Inicia o spinner
+
+    time.Sleep(2 * time.Second) // Simula o tempo de preparação do ambiente
+
+    s.Stop() // Para o spinner após a simulação
+
+    fmt.Println("Ambiente preparado.")
+}
