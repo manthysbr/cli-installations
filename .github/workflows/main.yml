@@ -1,0 +1,63 @@
+name: Go Build, Package, and Release
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      
+      - name: Set up Go
+        uses: actions/setup-go@v2
+        with:
+          go-version: '1.18'
+      
+      - name: Build
+        run: go build -v -o manthys .
+      
+      - name: Extract Version
+        id: extract_version
+        run: |
+          APP_VERSION=$(grep 'APP_VERSION=' install.sh | cut -d '"' -f 2)
+          echo "Extracted version: $APP_VERSION"
+          echo "APP_VERSION=$APP_VERSION" >> $GITHUB_ENV
+          echo "::set-output name=app_version::$APP_VERSION"
+      
+      - name: Package Binary
+        run: |
+          TAR_FILE="manthys-${{ env.APP_VERSION }}.tar.gz"
+          tar -czvf $TAR_FILE manthys
+          echo "TAR_FILE=${TAR_FILE}" >> $GITHUB_ENV
+      
+      - name: Generate Tag
+        if: github.ref == 'refs/heads/main'
+        run: |
+          TAG_NAME=${{ steps.extract_version.outputs.app_version }}
+          echo "Creating tag $TAG_NAME"
+          git tag $TAG_NAME
+          git push origin $TAG_NAME
+      
+      - name: Create Release
+        id: create_release # Este ID permite referenciar as saídas deste passo
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ env.APP_VERSION }}
+          release_name: Release ${{ env.APP_VERSION }}
+          draft: false
+          prerelease: false
+      
+      - name: Upload Release Asset
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }} # Usa a saída do passo anterior
+          asset_path: ./${{ env.TAR_FILE }}
+          asset_name: ${{ env.TAR_FILE }}
+          asset_content_type: application/gzip
