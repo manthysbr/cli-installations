@@ -1,4 +1,4 @@
-name: Go Build and Package
+name: Go Build, Package, and Release
 
 on:
   push:
@@ -6,13 +6,10 @@ on:
       - main
 
 jobs:
-  build:
-    name: Build and Package
+  build-and-release:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
+      - uses: actions/checkout@v2
 
       - name: Set up Go
         uses: actions/setup-go@v2
@@ -22,31 +19,29 @@ jobs:
       - name: Build
         run: go build -v -o manthys .
 
-      - name: Print GITHUB_SHA
-        run: echo "GITHUB_SHA is $GITHUB_SHA"
-  
-      - name: Set TAR_FILE variable
-        run: echo "TAR_FILE=manthys-${GITHUB_SHA::8}.tar.gz" >> $GITHUB_ENV
-
       - name: Package Binary
         run: |
+          TAR_FILE="manthys-${GITHUB_SHA::8}.tar.gz"
           tar -czvf $TAR_FILE manthys
-        shell: bash
+          echo "TAR_FILE=${TAR_FILE}" >> $GITHUB_ENV
 
-      - name: Verify .tar.gz file exists
-        run: |
-          if test -f "$TAR_FILE"; then
-              echo "$TAR_FILE exists."
-          else
-              echo "$TAR_FILE does not exist."
-              exit 1
-          fi
-
-      - name: List files in current directory
-        run: pwd && ls -la
-        
-      - name: Upload Build Artifact
-        uses: actions/upload-artifact@v2
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          name: ${{ env.TAR_FILE }}
-          path: ${{ env.TAR_FILE }}
+          tag_name: ${{ github.sha }}
+          release_name: Release ${{ github.sha }}
+          draft: false
+          prerelease: false
+
+      - name: Upload Release Asset
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./${{ env.TAR_FILE }}
+          asset_name: ${{ env.TAR_FILE }}
+          asset_content_type: application/gzip
