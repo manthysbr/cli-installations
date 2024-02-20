@@ -26,19 +26,18 @@ jobs:
       - name: Print GITHUB_SHA
         run: echo "GITHUB_SHA is $GITHUB_SHA"
   
-      - name: Package Binary
+      - name: Package Binary and Set TAR_FILE
         run: |
-          tar -czvf manthys-${GITHUB_SHA::8}.tar.gz manthys
+          echo "TAR_FILE=manthys-${GITHUB_SHA::8}.tar.gz" >> $GITHUB_ENV
+          tar -czvf $TAR_FILE manthys
         shell: bash
 
-      # Verificar a existência do arquivo .tar.gz
       - name: Verify .tar.gz file exists
         run: |
-          FILE=manthys-${GITHUB_SHA::8}.tar.gz
-          if test -f "$FILE"; then
-              echo "$FILE exists."
+          if test -f "$TAR_FILE"; then
+              echo "$TAR_FILE exists."
           else
-              echo "$FILE does not exist."
+              echo "$TAR_FILE does not exist."
               exit 1
           fi
 
@@ -51,4 +50,4 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: manthys-binary-${GITHUB_SHA::8}.tar.gz
-          path: manthys-${GITHUB_SHA::8}.tar.gz
+          path: ${{ env.TAR_FILE }}
