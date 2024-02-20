@@ -1,57 +1,61 @@
-# Manthys CLI
+# CLI de Instalação de Software - Manthys CLI
 
-## Visão Geral
+[![Go Reference](https://pkg.go.dev/badge/github.com/seuprojeto/cli-installation.svg)](https://pkg.go.dev/github.com/seuprojeto/cli-installation)
+[![go.mod](https://img.shields.io/github/go-mod/go-version/seuprojeto/cli-installation)](go.mod)
+[![LICENSE](https://img.shields.io/github/license/seuprojeto/cli-installation)](LICENSE)
+[![Build Status](https://img.shields.io/github/actions/workflow/status/seuprojeto/cli-installation/build.yml?branch=main)](https://github.com/seuprojeto/cli-installation/actions?query=workflow%3Abuild+branch%3Amain)
+[![Go Report Card](https://goreportcard.com/badge/github.com/seuprojeto/cli-installation)](https://goreportcard.com/report/github.com/seuprojeto/cli-installation)
 
-Manthys é uma ferramenta de linha de comando (CLI) desenvolvida para automatizar e facilitar a configuração de ambientes de desenvolvimento. Ela verifica a instalação de softwares essenciais pré-definidos, informa suas versões e, se necessário, procede com a instalação automatizada.
+⭐ `Star` este repositório se você achar útil e digno de manutenção.
 
-A idéia é sempre manter os softwares atualizados para trabalho, por isso é sempre bom a homologação dos softwares antes de qualquer tipo de implantação.
+👁 `Watch` este repositório para ser notificado sobre novas releases, issues, etc.
 
-A CLI usa Golang e Cobra para uma experiência de usuário aprimorada e funcionalidades robustas.
+## Descrição
 
-## Recursos
+Esta é uma ferramenta CLI desenvolvida em Go para automatizar a instalação de softwares essenciais como o Azure CLI e Docker, proporcionando feedback visual através de spinners durante o processo de instalação. Ideal para simplificar a configuração de ambientes de desenvolvimento ou produção.
 
-- Verificação automática da presença e versão de softwares essenciais como Python, Git, Docker, AzureCLI e os pacotes jq/yq.
-- Instalação automatizada de softwares não presentes no sistema.
-- Interface de usuário amigável e informativa, com saída detalhada sobre o estado de cada software.
+Inclui:
 
-## Instalação
-
-Para instalar a CLI Manthys, siga os passos abaixo:
-
-1. Clone o repositório:
-`git clone [https://github.com/manthysbr/cli-installations]`
-
-
-2. Navegue até o diretório:
-	 `cd cli-installations`
-
-3. Realize o check de dependências e compile o código:
-     `./install.sh`
-
-4. Execute a CLI
-     `manthys`
-
+- Integração contínua via [GitHub Actions](https://github.com/features/actions),
+- Gerenciamento de dependências usando [Go Modules](https://github.com/golang/go/wiki/Modules),
+- Formatação de código usando [gofumpt](https://github.com/mvdan/gofumpt),
+- Análise de código com [golangci-lint](https://github.com/golangci/golangci-lint),
+- Testes unitários com detecção de corrida e relatórios de cobertura de código.
 
 ## Uso
 
-A CLI Manthys pode ser usada com os seguintes comandos:
+1. Clone ou baixe este repositório.
+2. Substitua todas as ocorrências de `seuprojeto/cli-installation` pelo caminho do seu próprio repositório.
+3. Execute `go build` para construir a aplicação.
+4. Execute a CLI construída para instalar o software desejado, por exemplo, `./cli-installation install docker`.
 
-- `manthys check`: Verifica o estado atual dos softwares necessários.
-- `manthys install`: Instala todos os softwares que não estão presentes no sistema, de acordo com a checagem.
+## Configuração
 
-### Exemplos:
+Instruções de configuração do ambiente de desenvolvimento:
 
-- Para verificar os softwares:
-`manthys check`
+1. Instale [Go](https://golang.org/doc/install).
+2. Clone este repositório e abra-o.
+3. Execute `go mod tidy` para garantir que todas as dependências estejam corretas.
 
-- Para instalar os softwares:
-`manthys install`
+## Build
 
+### Terminal
 
-## Contribuição
+- Execute `go build` para construir a aplicação.
 
-Contribuições são bem-vindas! Por favor, leia o arquivo CONTRIBUTING.md para mais informações sobre como contribuir para o projeto.
+## Release
 
-## Licença
+O workflow de release é acionado sempre que uma tag com prefixo `v` é criada e enviada.
 
-Este projeto está sob a licença MIT. Veja o arquivo LICENSE.md para mais detalhes.
+## Manutenção
+
+Arquivos notáveis:
+
+- [.github/workflows](.github/workflows) - Workflows do GitHub Actions,
+- [go.mod](go.mod) - Definição do módulo Go.
+
+## Contribuindo
+
+Sinta-se à vontade para criar uma issue ou propor um pull request.
+
+Siga o [Código de Conduta](CODE_OF_CONDUCT.md).
