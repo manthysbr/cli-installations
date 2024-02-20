@@ -16,7 +16,7 @@ func InstallJq() {
     installCmd := exec.Command("sudo", "apt-get", "install", "-y", "jq")
 
     // Executa o comando de instalação e exibe um spinner enquanto aguarda a conclusão
-    ExecuteInstallCommand(installCmd)
+    executeInstallCommand(installCmd)
 
     fmt.Println("jq instalado com sucesso.")
 }
