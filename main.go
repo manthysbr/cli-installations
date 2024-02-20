@@ -7,6 +7,7 @@ import (
     "manthys/cmd/install"
     "manthys/cmd/utils"
     "github.com/spf13/cobra"
+    
 )
 
 var rootCmd = &cobra.Command{

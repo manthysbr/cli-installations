@@ -1,4 +1,3 @@
-
 package install
 
 import (
@@ -7,7 +6,7 @@ import (
 )
 
 // InstallDocker instala o Docker utilizando as funções do common_install.
-func InstallJQ() {
+func InstallJq() {
     fmt.Println("jq está sendo instalado. Aguarde...")
 
     // Preparando ambiente
@@ -17,7 +16,7 @@ func InstallJQ() {
     installCmd := exec.Command("sudo", "apt-get", "install", "-y", "jq")
 
     // Executa o comando de instalação e exibe um spinner enquanto aguarda a conclusão
-    executeInstallCommand(cmd)
+    executeInstallCommand(installCmd)
 
     fmt.Println("jq instalado com sucesso.")
 }
