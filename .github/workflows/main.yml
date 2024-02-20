@@ -23,9 +23,13 @@ jobs:
         run: |
           go build -v -o manthys .
 
+      - name: Print GITHUB_SHA
+        run: echo "GITHUB_SHA is $GITHUB_SHA"
+  
       - name: Package Binary
         run: |
           tar -czvf manthys-${GITHUB_SHA::8}.tar.gz manthys
+        shell: bash
 
       - name: Upload Build Artifact
         uses: actions/upload-artifact@v2
