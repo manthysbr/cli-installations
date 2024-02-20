@@ -48,5 +48,5 @@ jobs:
       - name: Upload Build Artifact
         uses: actions/upload-artifact@v2
         with:
-          name: manthys-binary-${GITHUB_SHA::8}.tar.gz
+          name: ${{ env.TAR_FILE }}
           path: ${{ env.TAR_FILE }}
