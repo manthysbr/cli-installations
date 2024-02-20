@@ -6,7 +6,7 @@ import (
 )
 
 // InstallDocker instala o Docker utilizando as funções do common_install.
-func InstallYQ() {
+func InstallYq() {
     fmt.Println("yq está sendo instalado. Aguarde...")
 
     // Preparando ambiente
