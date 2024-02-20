@@ -1,6 +1,7 @@
 package install
 
 import (
+    "github.com/briandowns/spinner"
     "bufio"
 	"time"
     "fmt"
@@ -16,17 +17,15 @@ func executeInstallCommand(cmd *exec.Cmd) {
         log.Fatalf("Erro ao criar o pipe para a saída padrão: %s", err)
     }
 
+    s := spinner.New(spinner.CharSets[39], 100*time.Millisecond) // Cria um novo spinner
+    s.Start() // Inicia o spinner
+
     if err := cmd.Start(); err != nil {
+        s.Stop() // Para o spinner em caso de erro
         log.Fatalf("Falha ao iniciar a instalação: %s", err)
     }
 
-    scanner := bufio.NewScanner(stdout)
-    for scanner.Scan() {
-        line := scanner.Text()
-        if strings.Contains(line, "Unpacking") || strings.Contains(line, "Setting up") {
-            fmt.Println(line)
-        }
-    }
+    s.Stop() // Para o spinner após o comando ser concluído
 
     if err := cmd.Wait(); err != nil {
         log.Fatalf("Falha na instalação: %s", err)
@@ -36,7 +35,14 @@ func executeInstallCommand(cmd *exec.Cmd) {
 }
 
 func prepararAmbiente() {
-	// Simula o tempo de preparação do ambiente
-	time.Sleep(2 * time.Second)
-	fmt.Println("Preparando ambiente...")
+    fmt.Println("Preparando ambiente...")
+
+    s := spinner.New(spinner.CharSets[39], 100*time.Millisecond) // Cria um novo spinner
+    s.Start() // Inicia o spinner
+
+    time.Sleep(2 * time.Second) // Simula o tempo de preparação do ambiente
+
+    s.Stop() // Para o spinner após a simulação
+
+    fmt.Println("Ambiente preparado.")
 }

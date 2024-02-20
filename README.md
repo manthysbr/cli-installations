@@ -1,57 +1,69 @@
-# Manthys CLI
+# CLI de Instalação de Software
 
-## Visão Geral
+[![Go Reference](https://pkg.go.dev/badge/github.com/seuprojeto/cli-installation.svg)](https://pkg.go.dev/github.com/manthysbr/cli-installation)
+[![go.mod](https://img.shields.io/github/go-mod/go-version/manthysbr/cli-installation)](go.mod)
+[![LICENSE](https://img.shields.io/github/license/manthysbr/cli-installation)](LICENSE)
+[![Build Status](https://img.shields.io/github/actions/workflow/status/manthysbr/cli-installation/build.yml?branch=main)](https://github.com/seuprojeto/cli-installation/actions?query=workflow%3Abuild+branch%3Amain)
+[![Go Report Card](https://goreportcard.com/badge/github.com/manthysbr/cli-installation)](https://goreportcard.com/report/github.com/seuprojeto/cli-installation)
 
-Manthys é uma ferramenta de linha de comando (CLI) desenvolvida para automatizar e facilitar a configuração de ambientes de desenvolvimento. Ela verifica a instalação de softwares essenciais pré-definidos, informa suas versões e, se necessário, procede com a instalação automatizada.
+⭐ `Star` este repositório se você achar útil e digno de manutenção.
 
-A idéia é sempre manter os softwares atualizados para trabalho, por isso é sempre bom a homologação dos softwares antes de qualquer tipo de implantação.
+👁 `Watch` este repositório para ser notificado sobre novas releases, issues, etc.
 
-A CLI usa Golang e Cobra para uma experiência de usuário aprimorada e funcionalidades robustas.
+## Descrição
 
-## Recursos
+Esta é uma  CLI desenvolvida em Go para automatizar a instalação e configuração de softwares essenciais para o meu trabalho e estudos. Criei por preguiça de toda vez ter que levar horas pra configurar um ambiente e para testar minhas habilidades com go, shell e tudo mais. Manthys é por conta do Radamanthys dos Cavaleiros do Zodíaco :heart_eyes: 
 
-- Verificação automática da presença e versão de softwares essenciais como Python, Git, Docker, AzureCLI e os pacotes jq/yq.
-- Instalação automatizada de softwares não presentes no sistema.
-- Interface de usuário amigável e informativa, com saída detalhada sobre o estado de cada software.
+![O mais brabo de todes](https://i.pinimg.com/originals/1f/24/90/1f24906a5b38e83d5e73e666419bb0b0.gif)
 
-## Instalação
+Adicionei:
 
-Para instalar a CLI Manthys, siga os passos abaixo:
+- Integração contínua via [GitHub Actions](https://github.com/features/actions),
+- Gerenciamento de dependências usando [Go Modules](https://github.com/golang/go/wiki/Modules),
+- Formatação de código usando [gofumpt](https://github.com/mvdan/gofumpt),
+- Análise de código com [golangci-lint](https://github.com/golangci/golangci-lint),
 
-1. Clone o repositório:
-`git clone [https://github.com/manthysbr/cli-installations]`
+Ainda falta:
+- Testes unitários com detecção de corrida e relatórios de cobertura de código.
 
+## Uso para desenvolvimento
 
-2. Navegue até o diretório:
-	 `cd cli-installations`
+1. Clone ou baixe este repositório.
+2. Altere a permissão do compile.sh para executá-lo ( chmod +x )
+3. Execute o compile.sh
+4. Depois da execução com sucesso do script, volte um diretório e acesse a pasta build ( home user build )
+4. Copie o script install.sh para a pasta de build e altere sua permissão
+5. Execute install.sh
 
-3. Realize o check de dependências e compile o código:
-     `./install.sh`
+Pronto, assim dá pra executar de qualquer lugar do ambiente sem precisar apontar nenhum path.
 
-4. Execute a CLI
-     `manthys`
+## Uso para usuário final
 
+1. Baixe o tar.gz nas releases.
+2. Mova o binario para o seu path global ( o install.sh já faz isso )
+3. Só executar manthys
 
-## Uso
+## Configuração
 
-A CLI Manthys pode ser usada com os seguintes comandos:
+Instruções de configuração do ambiente de desenvolvimento:
 
-- `manthys check`: Verifica o estado atual dos softwares necessários.
-- `manthys install`: Instala todos os softwares que não estão presentes no sistema, de acordo com a checagem.
+1. Instale [Go](https://golang.org/doc/install).
+2. Clone este repositório e abra-o.
+3. Execute `go mod tidy` para garantir que todas as dependências estejam corretas.
 
-### Exemplos:
+## Release
 
-- Para verificar os softwares:
-`manthys check`
+O workflow de release é acionado sempre que uma tag com prefixo `v` é criada e enviada.
 
-- Para instalar os softwares:
-`manthys install`
+## Manutenção
 
+Arquivos notáveis:
 
-## Contribuição
+- [.github/workflows](.github/workflows) - Workflows do GitHub Actions,
+- [go.mod](go.mod) - Definição do módulo Go.
 
-Contribuições são bem-vindas! Por favor, leia o arquivo CONTRIBUTING.md para mais informações sobre como contribuir para o projeto.
+## Contribuindo
 
-## Licença
+Sinta-se à vontade para criar uma issue ou propor um pull request.
 
-Este projeto está sob a licença MIT. Veja o arquivo LICENSE.md para mais detalhes.
+Siga o [Código de Conduta](CODE_OF_CONDUCT.md) quando eu terminar.

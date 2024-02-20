@@ -1,6 +1,6 @@
 #!/usr/bin/bash
-# Esse script realiza o build e empacotamento da aplicação.
-# O binario é compilado e empacotado em um arquivo tar.gz, e um checksum é gerado para o arquivo resultante.
+# Esse script realiza o build e empacotamento da aplicação localmente para testes
+# O binário é compilado e empacotado em um arquivo tar.gz, e um checksum é gerado para o arquivo resultante.
 # Definindo cores para saida
 GREEN='\033[0;32m'
 RED='\033[0;31m'
