@@ -31,6 +31,17 @@ jobs:
           tar -czvf manthys-${GITHUB_SHA::8}.tar.gz manthys
         shell: bash
 
+      # Novo passo adicionado para verificar a existência do arquivo .tar.gz
+      - name: Verify .tar.gz file exists
+        run: |
+          FILE=manthys-${GITHUB_SHA::8}.tar.gz
+          if test -f "$FILE"; then
+              echo "$FILE exists."
+          else
+              echo "$FILE does not exist."
+              exit 1
+          fi
+
       - name: Upload Build Artifact
         uses: actions/upload-artifact@v2
         with:
