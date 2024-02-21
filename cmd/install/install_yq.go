@@ -14,12 +14,10 @@ func InstallYq() {
     prepararAmbiente()
 
     // Define o comando para baixar e instalar o yq
-    installCmd := exec.Command("bash", "-c", "wget https://github.com/mikefarah/yq/releases/latest/download/yq_linux_amd64 -O /usr/bin/yq && chmod +x /usr/bin/yq")
+    cmd := exec.Command("bash", "-c", "wget https://github.com/mikefarah/yq/releases/latest/download/yq_linux_amd64 -O /usr/bin/yq && chmod +x /usr/bin/yq")
 
     // Executa o comando de instalação
-    if err := executeInstallCommand(installCmd); err != nil {
-        log.Fatalf("Erro ao instalar yq: %v", err)
-    }
-
+    executeInstallCommand(cmd)
+    
     fmt.Println("yq instalado com sucesso.")
 }
