@@ -2,25 +2,24 @@ package install
 
 import (
 	"fmt"
+	"log"
 	"os/exec"
 )
 
-// InstallDocker instala o Docker utilizando as funções do common_install.
+// InstallYq instala o yq utilizando wget para baixar o binário diretamente.
 func InstallYq() {
     fmt.Println("yq está sendo instalado. Aguarde...")
 
     // Preparando ambiente
     prepararAmbiente()
 
-    // Define o comando para instalar o Docker
-    addRepoCmd := exec.Command("sudo", "add-apt-repository", "-y", "ppa:rmescandon/yq")
-    executeInstallCommand(addRepoCmd)
+    // Define o comando para baixar e instalar o yq
+    installCmd := exec.Command("bash", "-c", "wget https://github.com/mikefarah/yq/releases/latest/download/yq_linux_amd64 -O /usr/bin/yq && chmod +x /usr/bin/yq")
 
-    updateCmd := exec.Command("sudo", "apt-get", "update")
-    executeInstallCommand(updateCmd)
-
-    installCmd := exec.Command("sudo", "apt-get", "install", "-y", "yq")
-    executeInstallCommand(installCmd)
+    // Executa o comando de instalação
+    if err := executeInstallCommand(installCmd); err != nil {
+        log.Fatalf("Erro ao instalar yq: %v", err)
+    }
 
     fmt.Println("yq instalado com sucesso.")
 }
