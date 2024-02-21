@@ -2,7 +2,6 @@ package install
 
 import (
 	"fmt"
-	"log"
 	"os/exec"
 )
 
@@ -18,6 +17,6 @@ func InstallYq() {
 
     // Executa o comando de instalação
     executeInstallCommand(cmd)
-    
+
     fmt.Println("yq instalado com sucesso.")
 }
