@@ -10,7 +10,7 @@ NC='\033[0m' # Sem cor
 APP_NAME="manthys"
 
 # Versao da app
-APP_VERSION="v1.0.0"
+APP_VERSION="v1.0.1"
 
 # Caminho do diretorio de build
 BUILD_DIR="/home/docker/build"
