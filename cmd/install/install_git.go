@@ -5,9 +5,9 @@ import (
 	"os/exec"
 )
 
-// InstallDocker instala o Docker utilizando as funções do common_install.
+// Funcao de instalacao do common_install.sh para o git
 func InstallGit() {
-	fmt.Println("Iniciando a instalação do Azure CLI...")
+	fmt.Println("Iniciando a instalação do Git...")
 
     // Preparando ambiente
     prepararAmbiente()
@@ -18,6 +18,6 @@ func InstallGit() {
     // Executa o comando de instalação e exibe um spinner enquanto aguarda a conclusão
     executeInstallCommand(cmd)
 
-    fmt.Println("Azure CLI instalado com sucesso.")
+    fmt.Println("Git instalado com sucesso.")
 }
 

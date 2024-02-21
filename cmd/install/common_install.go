@@ -9,7 +9,7 @@ import (
     "time"
 )
 
-// ExecuteInstallCommand executa um comando de instalação e fornece feedback ao usuário
+// Executa um comando de instalação
 func executeInstallCommand(cmd *exec.Cmd) {
     stdoutPipe, err := cmd.StdoutPipe()
     if err != nil {
@@ -41,7 +41,7 @@ func executeInstallCommand(cmd *exec.Cmd) {
     }
 }
 
-// PrepararAmbiente simula a preparação do ambiente
+// PrepararAmbiente simula a preparação do ambiente com spinners
 func prepararAmbiente() {
     fmt.Println("Preparando ambiente...")
 

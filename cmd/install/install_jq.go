@@ -5,7 +5,7 @@ import (
 	"os/exec"
 )
 
-// InstallDocker instala o Docker utilizando as funções do common_install.
+// Funcao de instalacao do common_install.sh para o jq (https://stedolan.github.io/jq/)
 func InstallJq() {
     fmt.Println("jq está sendo instalado. Aguarde...")
 
