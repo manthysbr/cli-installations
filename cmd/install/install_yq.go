@@ -16,6 +16,7 @@ func InstallYq() {
     cmd := exec.Command("bash", "-c", "wget https://github.com/mikefarah/yq/releases/latest/download/yq_linux_amd64 -O /usr/bin/yq && chmod +x /usr/bin/yq")
 
     // Executa o comando de instalação
+    //
     executeInstallCommand(cmd)
 
     fmt.Println("yq instalado com sucesso.")
